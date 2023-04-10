@@ -1,13 +1,9 @@
 pipeline {
-    agent {
-        docker { image 'debian'
-        args '-u root:root'
-        }
-    }
+    agent any
     stages {
         stage('Clone') {
             steps {
-                git branch:'master',url:'https://github.com/josedom24/ic-travis-diccionario.git'
+                sh 'git clone https://github.com/afermor8/ic-diccionario'
             }
         }
         stage('Install') {
@@ -19,14 +15,14 @@ pipeline {
         {
             steps {
                 sh '''
-                export LC_ALL=C.UTF-8
+                export LANG=es_ES.UTF-8
                 OUTPUT=`cat doc/*.md | aspell list -d es -p ./.aspell.es.pws`; if [ -n "$OUTPUT" ]; then echo $OUTPUT; exit 1; fi'''
             }
         }
     }
     post {
          always {
-          mail to: 'josedom24@josedomingo.org',
+          mail to: 'ara.fer.mor@gmail.com',
           subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
           body: "${env.BUILD_URL} has result ${currentBuild.result}"
         }
