@@ -8,7 +8,8 @@ pipeline {
         }
         stage('Install') {
             steps {
-                sh 'apt-get update && apt-get install -y aspell-es ' 
+                sh 'apt update'
+                sh 'apt install -y aspell aspell-es' 
             }
         }
         stage('Test')
