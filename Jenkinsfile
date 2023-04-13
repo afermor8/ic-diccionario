@@ -3,6 +3,7 @@ pipeline {
         docker { image 'debian'
         args '-u root:root'
         }
+    }
     stages {
         stage('Clone') {
             steps {
