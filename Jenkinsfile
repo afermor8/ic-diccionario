@@ -1,7 +1,8 @@
 pipeline {
     agent {
-        docker { image 'debian'
-        args '-u root:root'
+        docker { 
+            image 'debian:latest'
+            args '-u root:root'
         }
     }
     stages {
