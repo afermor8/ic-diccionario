@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker { 
-            image 'debian:latest'
+            image 'debian'
             args '-u root:root'
         }
     }
