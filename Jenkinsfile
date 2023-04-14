@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker { 
-            image 'debian'
-            args '-u root:root'
-        }
-    }
+    agent { dockerfile true }
     stages {
         stage('Clone') {
             steps {
